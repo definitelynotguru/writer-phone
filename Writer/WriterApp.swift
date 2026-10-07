@@ -14,6 +14,7 @@ struct WriterApp: App {
             }
             .environmentObject(store)
             .tint(WriterTheme.accent)
+            .onOpenURL { url in store.importOpened(url) }
         }
     }
 }

@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		093645D63C1AD2970B78E768 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C30BBF4C7AF9FE12D7B186 /* DocumentPicker.swift */; };
 		10969FA59322EE8D607A2043 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA30188C23BB57261F276275 /* Theme.swift */; };
 		1468A3AB6FD734B3426FC339 /* EditorFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8DB558A4E7044B1909B648 /* EditorFormatter.swift */; };
 		2138BBC0F99D511D16E13B2B /* MarkdownPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249741B11D69E813B4D70324 /* MarkdownPreview.swift */; };
 		49D79785C3F517F16D35A8FA /* Markdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A8E4109672F067A711E331 /* Markdown.swift */; };
 		4A8DF55C038F150770E11974 /* WriterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8F56007ABDB9F22F61A9B1 /* WriterApp.swift */; };
+		4DD05C4F3F9C1564CFE764A2 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCA1F92D9AD37E11657BA0A /* ShareViewController.swift */; };
 		5290BB77CA6E88B0D7FAA1FE /* WriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A9802A9E7CDD39786846E7 /* WriterTests.swift */; };
 		5D7FABFC972A0C0F62F6DAFA /* MarkdownTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE0472E87AEF7000AC5ED5A /* MarkdownTextView.swift */; };
 		7F4DDD0E8A871761DC497262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEF9237F9C706C69B52E3354 /* Assets.xcassets */; };
 		9BC78E2C7B225E148398820D /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C27A9899E802865904456FC /* IntroductionView.swift */; };
 		9D394DD48CE76BE42E449953 /* MarkdownBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448CDAEEF56559FE4F90AF46 /* MarkdownBlockView.swift */; };
+		B1F1B173E32EBB677DD7A88E /* WriterShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B480469FA07832E81252E9AD /* WriterShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B7146BD1897B36B04571C53A /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C1F8D0AD25978A76B4F9C7 /* NoteEditorView.swift */; };
 		BBBFFF88CA25B41008429044 /* MarkdownHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B97E894BDA5B85533AEAE4 /* MarkdownHighlighter.swift */; };
 		D5EEE567374394EB00A1927E /* NoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F590C047E23A95005106C22 /* NoteStore.swift */; };
@@ -25,6 +28,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		13C86A9F001062BF7E30A6AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E4948CB43BA326012E3D97DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6D943B36073EA3AF714547E;
+			remoteInfo = WriterShare;
+		};
 		E1253934D83FC8EB483614C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E4948CB43BA326012E3D97DE /* Project object */;
@@ -34,7 +44,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AB9381C4B211C7DC5736827A /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B1F1B173E32EBB677DD7A88E /* WriterShare.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		207821A2721BC77D88DF63B8 /* Writer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Writer.entitlements; sourceTree = "<group>"; };
 		249741B11D69E813B4D70324 /* MarkdownPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownPreview.swift; sourceTree = "<group>"; };
 		24C1F8D0AD25978A76B4F9C7 /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
 		2F590C047E23A95005106C22 /* NoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteStore.swift; sourceTree = "<group>"; };
@@ -45,12 +70,16 @@
 		6C8F56007ABDB9F22F61A9B1 /* WriterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterApp.swift; sourceTree = "<group>"; };
 		72A9802A9E7CDD39786846E7 /* WriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterTests.swift; sourceTree = "<group>"; };
 		7C27A9899E802865904456FC /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
+		9D6D7F6063648B0CE3D7AF5A /* WriterShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WriterShare.entitlements; sourceTree = "<group>"; };
 		A1B97E894BDA5B85533AEAE4 /* MarkdownHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownHighlighter.swift; sourceTree = "<group>"; };
 		ACE0472E87AEF7000AC5ED5A /* MarkdownTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownTextView.swift; sourceTree = "<group>"; };
 		AD6F65508F987B85F11D7A21 /* Writer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Writer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B480469FA07832E81252E9AD /* WriterShare.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = WriterShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC8DB558A4E7044B1909B648 /* EditorFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFormatter.swift; sourceTree = "<group>"; };
 		E5A8E4109672F067A711E331 /* Markdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Markdown.swift; sourceTree = "<group>"; };
+		E9C30BBF4C7AF9FE12D7B186 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		EA30188C23BB57261F276275 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		FBCA1F92D9AD37E11657BA0A /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		FEF9237F9C706C69B52E3354 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				BEC9E818D632B114C118AFC8 /* Writer */,
+				A9F91E0919C353DB644E9025 /* WriterShare */,
 				E6A32AD12F6ACDBCD974E043 /* WriterTests */,
 				5A74EA19A5E023B355EF5011 /* Products */,
 			);
@@ -68,15 +98,26 @@
 			isa = PBXGroup;
 			children = (
 				AD6F65508F987B85F11D7A21 /* Writer.app */,
+				B480469FA07832E81252E9AD /* WriterShare.appex */,
 				3DD0145FB942FB2C69D40D14 /* WriterTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A9F91E0919C353DB644E9025 /* WriterShare */ = {
+			isa = PBXGroup;
+			children = (
+				FBCA1F92D9AD37E11657BA0A /* ShareViewController.swift */,
+				9D6D7F6063648B0CE3D7AF5A /* WriterShare.entitlements */,
+			);
+			path = WriterShare;
 			sourceTree = "<group>";
 		};
 		BEC9E818D632B114C118AFC8 /* Writer */ = {
 			isa = PBXGroup;
 			children = (
 				FEF9237F9C706C69B52E3354 /* Assets.xcassets */,
+				E9C30BBF4C7AF9FE12D7B186 /* DocumentPicker.swift */,
 				CC8DB558A4E7044B1909B648 /* EditorFormatter.swift */,
 				7C27A9899E802865904456FC /* IntroductionView.swift */,
 				E5A8E4109672F067A711E331 /* Markdown.swift */,
@@ -89,6 +130,7 @@
 				60E14C0573274295C498E5BE /* NotesListView.swift */,
 				2F590C047E23A95005106C22 /* NoteStore.swift */,
 				EA30188C23BB57261F276275 /* Theme.swift */,
+				207821A2721BC77D88DF63B8 /* Writer.entitlements */,
 				6C8F56007ABDB9F22F61A9B1 /* WriterApp.swift */,
 			);
 			path = Writer;
@@ -123,16 +165,35 @@
 			productReference = 3DD0145FB942FB2C69D40D14 /* WriterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A6D943B36073EA3AF714547E /* WriterShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82BFDB15F174BF9E3E8F8AC5 /* Build configuration list for PBXNativeTarget "WriterShare" */;
+			buildPhases = (
+				A3BDDDE3D8E4D88FDBA0D932 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WriterShare;
+			packageProductDependencies = (
+			);
+			productName = WriterShare;
+			productReference = B480469FA07832E81252E9AD /* WriterShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		E66BBC12CCACDF05120BD489 /* Writer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F65FFD9724766EBAF31A5E5 /* Build configuration list for PBXNativeTarget "Writer" */;
 			buildPhases = (
 				7E44F152E2FFA40E73AF22B5 /* Sources */,
 				938823E83CC62016C3C1B1E6 /* Resources */,
+				AB9381C4B211C7DC5736827A /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BB122B14705D1EE6D0C20ABA /* PBXTargetDependency */,
 			);
 			name = Writer;
 			packageProductDependencies = (
@@ -167,6 +228,7 @@
 			projectRoot = "";
 			targets = (
 				E66BBC12CCACDF05120BD489 /* Writer */,
+				A6D943B36073EA3AF714547E /* WriterShare */,
 				2E660CA3A74297AB7A2821B4 /* WriterTests */,
 			);
 		};
@@ -188,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				093645D63C1AD2970B78E768 /* DocumentPicker.swift in Sources */,
 				1468A3AB6FD734B3426FC339 /* EditorFormatter.swift in Sources */,
 				9BC78E2C7B225E148398820D /* IntroductionView.swift in Sources */,
 				49D79785C3F517F16D35A8FA /* Markdown.swift in Sources */,
@@ -201,6 +264,14 @@
 				F74BDF60E1D77F5927DCE13A /* NotesListView.swift in Sources */,
 				10969FA59322EE8D607A2043 /* Theme.swift in Sources */,
 				4A8DF55C038F150770E11974 /* WriterApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3BDDDE3D8E4D88FDBA0D932 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DD05C4F3F9C1564CFE764A2 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +290,11 @@
 			isa = PBXTargetDependency;
 			target = E66BBC12CCACDF05120BD489 /* Writer */;
 			targetProxy = E1253934D83FC8EB483614C9 /* PBXContainerItemProxy */;
+		};
+		BB122B14705D1EE6D0C20ABA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A6D943B36073EA3AF714547E /* WriterShare */;
+			targetProxy = 13C86A9F001062BF7E30A6AF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -297,6 +373,52 @@
 			};
 			name = Debug;
 		};
+		40E0C073CE890D15125D90D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WriterShare/WriterShare.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WriterShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.writer-phone.WriterShare";
+				PRODUCT_NAME = WriterShare;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		554C059D6BB005B462C4DF97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WriterShare/WriterShare.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = WriterShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.writer-phone.WriterShare";
+				PRODUCT_NAME = WriterShare;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		595D3EBA5621018F8845B423 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -320,6 +442,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Writer/Writer.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -331,7 +454,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.writer-phone";
 				PRODUCT_NAME = Writer;
 				SDKROOT = iphoneos;
@@ -406,6 +529,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Writer/Writer.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -417,7 +541,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.writer-phone";
 				PRODUCT_NAME = Writer;
 				SDKROOT = iphoneos;
@@ -443,6 +567,15 @@
 			buildConfigurations = (
 				D3C2D554FB49A07A21CEEF88 /* Debug */,
 				705C76F09E1B861313177418 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		82BFDB15F174BF9E3E8F8AC5 /* Build configuration list for PBXNativeTarget "WriterShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40E0C073CE890D15125D90D7 /* Debug */,
+				554C059D6BB005B462C4DF97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

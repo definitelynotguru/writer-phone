@@ -131,6 +131,67 @@ final class NoteStore: ObservableObject {
         }
     }
 
+    /// Shared app-group container used by the Share extension to drop notes.
+    static let appGroupID = "group.com.writer-phone"
+
+    /// Copies external text files into Documents as `<title>.md`,
+    /// de-duplicating names ("X" → "X 2"). Returns the count imported.
+    @discardableResult
+    func importFiles(_ urls: [URL]) -> Int {
+        var imported = 0
+        for url in urls {
+            let accessing = url.startAccessingSecurityScopedResource()
+            defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+            guard let content = try? String(contentsOf: url, encoding: .utf8),
+                  !content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            else { continue }
+            let base = sanitize(url.deletingPathExtension().lastPathComponent)
+            var title = base.isEmpty ? "Imported" : base
+            var dest = fileURL(for: title)
+            var n = 2
+            while fileManager.fileExists(atPath: dest.path) {
+                title = "\(base) \(n)"
+                dest = fileURL(for: title)
+                n += 1
+            }
+            guard (try? content.write(to: dest, atomically: true, encoding: .utf8)) != nil else { continue }
+            imported += 1
+        }
+        if imported > 0 { scan() }
+        return imported
+    }
+
+    /// Drains every inbox apps can drop notes into: the shared app-group
+    /// Inbox (Share extension) and Documents/Inbox ("Copy to Writer").
+    @discardableResult
+    func importInbox() -> Int {
+        var dirs = [directory.appendingPathComponent("Inbox", isDirectory: true)]
+        if let group = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.appGroupID) {
+            dirs.append(group.appendingPathComponent("Inbox", isDirectory: true))
+        }
+        var pending: [URL] = []
+        for dir in dirs {
+            let urls = (try? fileManager.contentsOfDirectory(
+                at: dir, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]
+            )) ?? []
+            pending += urls.filter { ["md", "txt", "text"].contains($0.pathExtension.lowercased()) }
+        }
+        let imported = importFiles(pending)
+        for url in pending { try? fileManager.removeItem(at: url) }
+        return imported
+    }
+
+    /// Handles "Copy to Writer" from Files/share sheets: the file lands in
+    /// Documents/Inbox, we move it into the notes list. Only removes the
+    /// Inbox copy — in-place opens outside the sandbox are left untouched.
+    func importOpened(_ url: URL) {
+        _ = importFiles([url])
+        let inbox = directory.appendingPathComponent("Inbox", isDirectory: true).path
+        if url.path.hasPrefix(inbox) {
+            try? fileManager.removeItem(at: url)
+        }
+    }
+
     private func fileURL(for title: String) -> URL {
         directory.appendingPathComponent(title).appendingPathExtension("md")
     }

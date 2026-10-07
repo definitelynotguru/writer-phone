@@ -17,11 +17,21 @@ targets:
       properties:
         UIFileSharingEnabled: true
         LSSupportsOpeningDocumentsInPlace: true
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Markdown Document
+            CFBundleTypeRole: Editor
+            LSHandlerRank: Alternate
+            LSItemContentTypes:
+              - net.daringfireball.markdown
+              - public.plain-text
+              - public.text
+    entitlements:
+      path: Writer/Writer.entitlements
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.writer-phone
         PRODUCT_NAME: Writer
-        MARKETING_VERSION: "0.1.0"
+        MARKETING_VERSION: "1.0.0"
         CURRENT_PROJECT_VERSION: 1
         GENERATE_INFOPLIST_FILE: YES
         TARGETED_DEVICE_FAMILY: 1
@@ -29,9 +39,47 @@ targets:
         SWIFT_VERSION: "5.0"
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+    dependencies:
+      - target: WriterShare
+        embed: true
     scheme:
       testTargets:
         - WriterTests
+  WriterShare:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: WriterShare
+        excludes:
+          - Info.plist
+    info:
+      path: WriterShare/Info.plist
+      properties:
+        CFBundleDisplayName: Writer
+        CFBundlePackageType: XPC!
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsText: true
+              NSExtensionActivationSupportsWebURLWithMaxCount: 1
+              NSExtensionActivationSupportsWebPageWithMaxCount: 1
+    entitlements:
+      path: WriterShare/WriterShare.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.writer-phone.WriterShare
+        PRODUCT_NAME: WriterShare
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: 1
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: WriterShare/Info.plist
+        TARGETED_DEVICE_FAMILY: 1
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+        SWIFT_VERSION: "5.0"
+        SKIP_INSTALL: YES
   WriterTests:
     type: bundle.unit-test
     platform: iOS

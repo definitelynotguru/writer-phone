@@ -77,4 +77,37 @@ final class NoteStoreTests: XCTestCase {
         let long = String(repeating: "word ", count: 100)
         XCTAssertLessThanOrEqual(NoteStore.makePreview(of: long).count, 140)
     }
+
+    func testImportFilesDedupesNames() throws {
+        let store = NoteStore()
+        let tmp = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: tmp, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: tmp) }
+
+        let src = tmp.appendingPathComponent("Daily Notes.md")
+        try "imported body".write(to: src, atomically: true, encoding: .utf8)
+
+        // Seed an existing note with the same title so the import must rename.
+        let existing = store.directory.appendingPathComponent("Daily Notes.md")
+        try? "original".write(to: existing, atomically: true, encoding: .utf8)
+        defer { try? FileManager.default.removeItem(at: store.directory.appendingPathComponent("Daily Notes 2.md")) }
+
+        XCTAssertEqual(store.importFiles([src]), 1)
+        XCTAssertTrue(store.notes.contains { $0.title == "Daily Notes 2" })
+    }
+
+    func testImportFilesSkipsUnreadableAndEmpty() throws {
+        let store = NoteStore()
+        let tmp = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: tmp, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: tmp) }
+
+        let empty = tmp.appendingPathComponent("Empty.md")
+        try "   \n".write(to: empty, atomically: true, encoding: .utf8)
+        let missing = tmp.appendingPathComponent("Nope.md")
+
+        XCTAssertEqual(store.importFiles([empty, missing]), 0)
+    }
 }

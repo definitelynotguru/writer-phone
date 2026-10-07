@@ -70,6 +70,8 @@ struct IntroductionView: View {
                             tasksRow
                         }
                     }
+
+                    importSection
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 8)
@@ -78,6 +80,22 @@ struct IntroductionView: View {
             }
             .background(WriterTheme.background.ignoresSafeArea())
             .navigationTitle("Introduction")
+        }
+    }
+
+    /// How to bring in notes from other apps — no syntax, so plain rows.
+    private var importSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("IMPORT")
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(WriterTheme.accent)
+            VStack(alignment: .leading, spacing: 8) {
+                Label("Share a note in Apple Notes or Journal → choose Writer — it lands as a note.", systemImage: "square.and.arrow.up")
+                Label("Tap the import button on the Notes tab to pick .md/.txt files.", systemImage: "square.and.arrow.down")
+                Label("In Files, tap a file → Copy to Writer.", systemImage: "folder")
+            }
+            .font(.subheadline)
+            .foregroundStyle(WriterTheme.muted)
         }
     }
 

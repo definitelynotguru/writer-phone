@@ -4,6 +4,7 @@ struct NotesListView: View {
     @EnvironmentObject var store: NoteStore
     @Environment(\.scenePhase) private var scenePhase
     @State private var query = ""
+    @State private var showImporter = false
     @State private var renaming: Note?
     @State private var renameText = ""
     @State private var path = NavigationPath()
@@ -22,6 +23,11 @@ struct NotesListView: View {
             .navigationTitle("Writer")
             .searchable(text: $query, prompt: "Search notes")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button { showImporter = true } label: {
+                        Image(systemName: "square.and.arrow.down")
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { newNote() } label: {
                         Image(systemName: "square.and.pencil")
@@ -32,6 +38,9 @@ struct NotesListView: View {
                 NoteEditorView(note: note)
             }
         }
+        .sheet(isPresented: $showImporter) {
+            DocumentPicker { urls in store.importFiles(urls) }
+        }
         .alert("Rename Note", isPresented: renameBinding) {
             TextField("Title", text: $renameText)
             Button("Cancel", role: .cancel) {}
@@ -41,9 +50,15 @@ struct NotesListView: View {
                 }
             }
         }
-        .onAppear { store.scan() }
+        .onAppear {
+            store.importInbox()
+            store.scan()
+        }
         .onChange(of: scenePhase) { _, phase in
-            if phase == .active { store.scan() }
+            if phase == .active {
+                store.importInbox()
+                store.scan()
+            }
         }
     }
 
