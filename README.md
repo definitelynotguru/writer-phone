@@ -20,6 +20,8 @@ markdown live while you type, and stays out of your way.
   markers, matching the desktop editor's feel.
 - **Rendered preview** — tap the eye to read the note rendered; task
   checkboxes are tappable and update the source.
+- **Introduction tab** — a built-in markdown cheat sheet that shows each
+  syntax raw beside its live render, including a tappable task demo.
 - **Markdown keyboard bar** — heading, bold, italic, code, list, task, and
   quote buttons above the keyboard.
 - **List continuation** — return on a list item continues the list (numbered

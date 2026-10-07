@@ -4,7 +4,6 @@ struct NotesListView: View {
     @EnvironmentObject var store: NoteStore
     @Environment(\.scenePhase) private var scenePhase
     @State private var query = ""
-    @State private var showAbout = false
     @State private var renaming: Note?
     @State private var renameText = ""
     @State private var path = NavigationPath()
@@ -23,11 +22,6 @@ struct NotesListView: View {
             .navigationTitle("Writer")
             .searchable(text: $query, prompt: "Search notes")
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button { showAbout = true } label: {
-                        Image(systemName: "info.circle")
-                    }
-                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { newNote() } label: {
                         Image(systemName: "square.and.pencil")
@@ -38,7 +32,6 @@ struct NotesListView: View {
                 NoteEditorView(note: note)
             }
         }
-        .sheet(isPresented: $showAbout) { AboutView() }
         .alert("Rename Note", isPresented: renameBinding) {
             TextField("Title", text: $renameText)
             Button("Cancel", role: .cancel) {}

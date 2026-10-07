@@ -6,9 +6,14 @@ struct WriterApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NotesListView()
-                .environmentObject(store)
-                .tint(WriterTheme.accent)
+            TabView {
+                NotesListView()
+                    .tabItem { Label("Notes", systemImage: "doc.text") }
+                IntroductionView()
+                    .tabItem { Label("Introduction", systemImage: "number") }
+            }
+            .environmentObject(store)
+            .tint(WriterTheme.accent)
         }
     }
 }
