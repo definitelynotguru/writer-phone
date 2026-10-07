@@ -144,7 +144,6 @@ enum MarkdownHighlighter {
         func excluded(_ range: NSRange) -> Bool {
             codeRanges.contains { NSIntersectionRange($0, range).length > 0 }
         }
-        let fg = WriterTheme.foregroundUI
         let muted = WriterTheme.mutedUI
         let accent = WriterTheme.accentUI
         let mono = UIFont.monospacedSystemFont(ofSize: 14, weight: .regular)
@@ -203,7 +202,6 @@ enum MarkdownHighlighter {
                     .foregroundColor, value: muted, range: NSRange(r))
             }
         }
-        _ = fg
     }
 
     /// Applies `style` to the interior of a match and dims the surrounding
