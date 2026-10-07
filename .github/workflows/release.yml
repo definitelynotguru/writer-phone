@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Xcode project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Build simulator app
+        run: >
+          xcodebuild -project Writer.xcodeproj -scheme Writer
+          -configuration Release -sdk iphonesimulator
+          -derivedDataPath DerivedData build
+
+      - name: Build unsigned device app
+        run: >
+          xcodebuild -project Writer.xcodeproj -scheme Writer
+          -configuration Release -sdk iphoneos
+          CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=
+          -derivedDataPath DerivedData build
+
+      - name: Package artifacts
+        run: |
+          V="${GITHUB_REF_NAME#v}"
+          ditto -c -k --keepParent \
+            DerivedData/Build/Products/Release-iphonesimulator/Writer.app \
+            "Writer-$V-simulator.zip"
+          mkdir -p Payload
+          cp -R DerivedData/Build/Products/Release-iphoneos/Writer.app Payload/
+          zip -qr "Writer-$V.ipa" Payload
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Writer-*-simulator.zip
+            Writer-*.ipa
+          generate_release_notes: true
