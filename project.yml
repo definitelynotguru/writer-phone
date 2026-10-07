@@ -1,0 +1,42 @@
+name: Writer
+options:
+  bundleIdPrefix: com.writer-phone
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+targets:
+  Writer:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Writer
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.writer-phone
+        PRODUCT_NAME: Writer
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: 1
+        GENERATE_INFOPLIST_FILE: YES
+        TARGETED_DEVICE_FAMILY: 1
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+        SWIFT_VERSION: "5.0"
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIFileSharingEnabled: YES
+        INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+    scheme:
+      testTargets:
+        - WriterTests
+  WriterTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: WriterTests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.writer-phone.WriterTests
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_VERSION: "5.0"
+    dependencies:
+      - target: Writer
